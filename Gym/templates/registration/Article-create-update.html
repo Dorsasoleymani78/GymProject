@@ -1,0 +1,50 @@
+{% extends 'registration/base.html' %}
+{% load crispy_forms_tags %}
+myhome
+
+{% block title %}{% block title-meta %}لیست مقالات<p>{{user.get_full_name}}</p>{% endblock %}{% endblock title %} 
+{% block main %} 
+    <div class="col-md-12">
+        <div class="card card-primary">
+            <div class="card-header">
+            <h3 class="card-title mb-0 float-left">افزودن مقاله</h3>
+            </div>
+        <div class="card-body">
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+            
+                <div class="row">
+                    <div class="col-6">
+                    {{ form.title|as_crispy_field }}
+                    </div>
+                    <div class="col-6">
+                        {{ form.slug|as_crispy_field }}
+                    </div>
+                    <div class="col-12">
+                        {{ form.content|as_crispy_field }}
+                    </div>
+                    <div class="col-6">
+                        {{ form.category|as_crispy_field }}
+                    </div>
+                    <div class="col-6">
+                        {{ form.img|as_crispy_field }}
+                        {{ form.published_at|as_crispy_field }}
+                    </div>
+                    {% if user.is_superuser %}
+                        <div class="col-6">
+                            {{ form.author|as_crispy_field }}
+                        </div>
+                        <div class="col-6">
+                            {{ form.status|as_crispy_field }}
+                        </div>
+                    {% endif %}
+                        
+                </div>
+                
+            
+                <button class="btn btn-success"> ارسال مقاله</burron>
+            </form>
+        </div>
+        </div>
+    </div>
+{% endblock main %} 

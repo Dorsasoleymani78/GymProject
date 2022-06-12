@@ -1,0 +1,12 @@
+<menuitem id="demo2">
+<a class="px-lg-3 py-3 py-lg-4 btn btn-secondary "  href="{% url 'blog:category' cat.slug %}">{{cat.title}}</a>
+   <menu>
+      {% for  cat in cat.children.active %}
+      <menuitem id="demo3">
+      <a  class="  px-lg-3 py-3 py-lg-4 btn btn-secondary " href="{% url 'blog:category' cat.slug %}">{{cat.title}}</a>
+   
+      </menuitem>
+      {% endfor %}
+      
+   </menu>
+</menuitem> 

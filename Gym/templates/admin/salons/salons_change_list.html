@@ -1,0 +1,18 @@
+{% extends 'admin/change_list.html' %}
+{% block object-tools %}
+<form id='Capacityvalue-form'  method="post">
+    {% csrf_token %}
+    <input name="Capacityvalue" class="vTextField">
+    <button  type="submit" class="button">تغییر دادن ظرفیت </button>
+
+</form>
+<br>
+<script>
+    let CapacityvalueForm=document.querySelector('#Capacityvalue-form')
+    CapacityvalueForm.querySelector('input[name="Capacityvalue"]').addEventListener('change',function(e){
+        let CapacitySize=e.target.value
+        CapacityvalueForm.action='Capacityvalue/'+CapacitySize+'/'
+    })
+</script>
+{{block.super}}
+{% endblock    %}

@@ -1,0 +1,24 @@
+<menu class="navbar-nav ms-auto py-4 py-lg-0">
+    <menuitem class="nav-item" >
+                <a class=" px-lg-3 py-3 py-lg-4 btn btn-secondary  " href="{% url 'blog:home' %}">خانه</a> 
+    </menuitem>  
+    {% for cat in category %}
+            {% if cat.parent == None %}
+                <menuitem id="demo1">
+                <a  class="px-lg-3 py-3 py-lg-4 btn btn-secondary  " href="{% url 'blog:category' cat.slug %}">{{cat.title}}</a>
+                    <menu>
+                        {% if cat.children.active %}
+                            {% for cat in cat.children.active %} 
+                                {% include  './category_loop.html' %}
+                            {% endfor %}
+                        {% endif %}
+                    </menu>
+                </menuitem>
+            {% endif %}
+    {% endfor %}           
+</menu> 
+ 
+ 
+ 
+ 
+         
